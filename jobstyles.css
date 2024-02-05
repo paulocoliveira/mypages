@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 10px;
+    background-color: white;
+    color: #09389C;
+}
+
+.container {
+    width: 100%;
+}
+
+h1 {
+    text-align: left;
+}
+
+fieldset {
+    border: 1px solid #09389C;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+legend {
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+label {
+    margin-right: 10px;
+}
+
+input[type='text'], 
+input[type='email'], 
+input[type='tel'], 
+input[type='number'], 
+select {
+    background-color: white;
+    color: #09389C;
+    border: 1px solid #09389C;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+input[type='checkbox'], input[type='radio'] {
+    accent-color: #09389C;
+}
+
+button {
+    background-color: #09389C;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #09389C;
+    color: white;
+}
+
+#successMessage {
+    margin-left: 10px;
+    color: green;
+    font-weight: bold;
+}
+
+/* More styles as needed */
