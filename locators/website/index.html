@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Site for CSS Selectors and XPath</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <header id="main-header">
+        <h1>Demo Site</h1>
+    </header>
+
+    <nav>
+        <ul class="navigation">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="blog.html" class="active">Blog</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="content">
+        <article class="post" data-status="published">
+            <h2 class="post-title">Introduction to Test Automation</h2>
+            <p>This article introduces test automation...</p>
+        </article>
+        <article class="post" data-status="draft">
+            <h2 class="post-title">Advanced CSS Selectors</h2>
+            <p>Dive deeper into advanced CSS selectors...</p>
+        </article>
+        <article class="post highlight" data-status="published">
+            <h2 class="post-title">XPath in Test Automation</h2>
+            <p>XPath can be extremely powerful in test automation...</p>
+        </article>
+    </section>
+
+    <aside>
+        <div id="sidebar">
+            <h3>Tags</h3>
+            <ul class="tags">
+                <li><a href="tag-automation.html">Automation</a></li>
+                <li><a href="tag-selenium.html">Selenium</a></li>
+                <li><a href="tag-css.html">CSS</a></li>
+                <li><a href="tag-xpath.html">XPath</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <footer>
+        <p>&copy; 2024 Demo Site</p>
+    </footer>
+</div>
+
+<script src="scripts.js"></script>
+</body>
+</html>
