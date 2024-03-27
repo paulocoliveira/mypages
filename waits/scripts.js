@@ -32,3 +32,13 @@ function showMessage() {
     document.getElementById("message").textContent = "Você interagiu com o elemento oculto!";
     document.getElementById("message").classList.remove("hidden");
 }
+
+window.onload = () => {
+    setTimeout(() => {
+        document.body.classList.remove('preload');
+        const container = document.querySelector('.container');
+        if (container) {
+            container.style.opacity = 1;
+        }
+    }, 5000); // Ajuste para 5 segundos
+};
