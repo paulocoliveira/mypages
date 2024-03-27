@@ -1,0 +1,75 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #FAFAFA;
+    overflow: hidden;
+}
+
+body.preload * {
+    transition: none !important;
+}
+
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.container.show {
+    opacity: 1;
+}
+
+header h1 {
+    text-align: center;
+    color: #263238;
+}
+
+.section {
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+button {
+    background-color: #2196F3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #1976D2;
+}
+
+#conditional-element {
+    margin-bottom: 20px; /* Espaçamento entre o botão "Clique em mim" e o texto subsequente */
+}
+
+.message {
+    color: #2196F3;
+    text-align: center;
+    margin-top: 20px; /* Espaçamento */
+}
+
+.hidden {
+    display: none;
+}
+
+.status-message {
+    color: #4CAF50;
+    margin-top: 15px;
+}
+
