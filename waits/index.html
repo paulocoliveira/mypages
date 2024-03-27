@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teste Selenium</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 id="welcome-title">Bem-vindo ao Teste Selenium!</h1>
+    <button id="show-button" onclick="showHiddenElement()">Mostrar Elemento Oculto</button>
+    <button id="hide-button" onclick="hideVisibleElement()">Ocultar Elemento Visível</button>
+    <div id="hidden-element" style="display: none;">Elemento Inicialmente Oculto</div>
+    <div id="visible-element">Elemento Inicialmente Visível</div>
+    <p id="text-element">Texto para verificar presença</p>
+
+    <script>
+        function showHiddenElement() {
+            document.getElementById("hidden-element").style.display = "block";
+        }
+        
+        function hideVisibleElement() {
+            document.getElementById("visible-element").style.display = "none";
+        }
+    </script>
+</body>
+</html>
