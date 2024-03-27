@@ -7,17 +7,17 @@ function simulateAction(elementId, message) {
 
 function toggleElementVisibility(elementId) {
     var element = document.getElementById(elementId);
+    var message = document.getElementById("message");
     // Verifica se o elemento já está visível
     if (element.classList.contains('hidden')) {
         // Remove a classe 'hidden' depois de um delay, tornando o elemento visível
-        console.log("entrou no hidden")
         setTimeout(() => {
             element.classList.remove('hidden');
         }, 3000); // Ajuste este tempo conforme necessário
     } else {
-        console.log("entrou no else do hidden")
         // Se o elemento já está visível, este bloco pode ocultá-lo imediatamente ou após um delay
         element.classList.add('hidden');
+        message.classList.add("hidden")
     }
 }
 
