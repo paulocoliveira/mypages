@@ -52,9 +52,11 @@ function checkAgreement() {
 }
 
 document.getElementById('agree-button').addEventListener('click', function() {
-    const checkbox = document.getElementById('agree-terms');
-    checkbox.checked = true;
-    document.getElementById('confirm-button').disabled = false; // Habilita o segundo botão
+    setTimeout(function() {
+        const checkbox = document.getElementById('agree-terms');
+        checkbox.checked = true;
+        document.getElementById('confirm-button').disabled = false; // Habilita o segundo botão
+    }, 4000); // Adiciona um delay de 4 segundos
 });
 
 document.getElementById('confirm-button').addEventListener('click', function() {
