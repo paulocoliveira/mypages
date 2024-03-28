@@ -72,6 +72,14 @@ button:hover {
     margin-top: 20px; /* Espaçamento entre o botão "Clique em mim" e o texto subsequente */
 }
 
+.spacing20 {
+    margin-top: 20px; /* Espaçamento entre o botão "Clique em mim" e o texto subsequente */
+}
+
+.spacing10 {
+    margin-top: 5px; /* Espaçamento entre o botão "Clique em mim" e o texto subsequente */
+}
+
 .status-message {
     color: #4CAF50;
     margin-top: 15px;

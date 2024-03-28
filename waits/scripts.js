@@ -2,6 +2,9 @@ function simulateAction(elementId, message) {
     document.getElementById(elementId).textContent = 'Processando...';
     setTimeout(() => {
         document.getElementById(elementId).textContent = message;
+        if (elementId === "email-status") {
+            document.title = "Email enviado com sucesso"; // Altera o título da página
+        }
     }, 3000); // Delay de 3 segundos para simular a espera, ideal para testar Explicit e Fluent Waits.
 }
 
@@ -32,6 +35,42 @@ function showMessage() {
     document.getElementById("message").textContent = "Você interagiu com o elemento oculto!";
     document.getElementById("message").classList.remove("hidden");
 }
+
+function checkAgreement() {
+    const checkbox = document.getElementById('agree-terms');
+    const messageElement = document.createElement('p');
+
+    if (checkbox.checked) {
+        messageElement.textContent = 'Você concordou com os termos.';
+        messageElement.style.color = 'green';
+    } else {
+        messageElement.textContent = 'É necessário concordar com os termos para continuar.';
+        messageElement.style.color = 'red';
+    }
+
+    document.getElementById('terms-section').appendChild(messageElement);
+}
+
+document.getElementById('agree-button').addEventListener('click', function() {
+    const checkbox = document.getElementById('agree-terms');
+    checkbox.checked = true;
+    document.getElementById('confirm-button').disabled = false; // Habilita o segundo botão
+});
+
+document.getElementById('confirm-button').addEventListener('click', function() {
+    const checkbox = document.getElementById('agree-terms');
+    const messageElement = document.getElementById('terms-message');
+    if (!checkbox.checked) {
+        messageElement.textContent = 'É necessário concordar com os termos para continuar.';
+        messageElement.style.color = 'red';
+        messageElement.classList.remove('hidden');
+    } else {
+        messageElement.textContent = 'Você concordou com os termos com sucesso.';
+        messageElement.style.color = 'green';
+        messageElement.classList.remove('hidden');
+    }
+});
+
 
 window.onload = () => {
     setTimeout(() => {
