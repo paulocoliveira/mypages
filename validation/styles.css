@@ -1,3 +1,46 @@
-.text-primary {
-    color: blue;
+body {
+    font-family: 'Roboto', sans-serif;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.material-button {
+    background-color: #6200EE;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.material-button:hover {
+    background-color: #3700B3;
+}
+
+.material-input {
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.material-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+    color: red;
+    margin: 0;
+}
+
+.material-text {
+    margin: 0;
 }

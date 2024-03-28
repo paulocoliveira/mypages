@@ -4,13 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Page for Selenium</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1 id="title" class="text-primary" data-test="titleData">Validation Page</h1>
-    <button id="toggleButton">Hide Message</button>
-    <input type="text" id="inputField" disabled value="Disabled Field"/>
-    <p id="hiddenMessage" style="display: none;">Secret Message!</p>
+    <h1 id="title" data-test="testValue">Validation Page</h1>
+    <button id="toggleButton" class="material-button">Toggle Message</button>
+    <p id="hiddenMessage" class="hidden material-text">This is a hidden message</p>
+    <input id="inputField" type="text" class="material-input" placeholder="Type something...">
+    <label class="material-checkbox">
+        <input id="testCheckbox" type="checkbox" checked>
+        <span>Test Checkbox</span>
+    </label>
+    <button id="testButton" class="material-button">Test Button</button>
 
     <script src="scripts.js"></script>
 </body>

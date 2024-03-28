@@ -1,8 +1,8 @@
-document.getElementById("toggleButton").addEventListener("click", function() {
-    var msg = document.getElementById("hiddenMessage");
-    if (msg.style.display === "none") {
-        msg.style.display = "block";
+document.getElementById('toggleButton').addEventListener('click', function() {
+    var message = document.getElementById('hiddenMessage');
+    if (message.classList.contains('hidden')) {
+        message.classList.remove('hidden');
     } else {
-        msg.style.display = "none";
+        message.classList.add('hidden');
     }
 });
