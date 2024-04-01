@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição para Mentoria - Etapa 3</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Inscrição para Mentoria - Etapa 3</h2>
+        <form id="formEtapa3">
+            <div class="input-field">
+                <label>Qual a sua área de interesse para mentoria?</label>
+                <select id="interesseMentoria" name="interesseMentoria" required>
+                    <option value="entrar_area">Entrar na área</option>
+                    <option value="desenvolvimento_carreira">Desenvolvimento de carreira</option>
+                    <option value="automacao_testes">Automação de testes</option>
+                    <option value="ia">Inteligência Artificial</option>
+                    <option value="lideranca">Liderança</option>
+                    <option value="soft_skills">Soft Skills</option>
+                </select>
+            </div>
+            <div class="input-field">
+                <label for="descricao">Descreva em alguns parágrafos o que você deseja com a mentoria:</label>
+                <textarea id="descricao" name="descricao" rows="4" required></textarea>
+            </div>
+            <button type="submit">Enviar Inscrição</button>
+        </form>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>

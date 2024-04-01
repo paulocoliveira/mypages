@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição para Mentoria - Etapa 2</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Inscrição para Mentoria - Etapa 2</h2>
+        <form id="formEtapa2" action="etapa3.html">
+            <div class="input-field">
+                <label>Já trabalha na área?</label>
+                <select id="trabalhaArea" name="trabalhaArea" required>
+                    <option value="sim_empregado">Sim, e estou empregado</option>
+                    <option value="sim_desempregado">Sim, mas estou desempregado</option>
+                    <option value="nao">Não</option>
+                </select>
+            </div>
+            <div class="input-field">
+                <label for="experiencia">Quantos anos de experiência você tem?</label>
+                <input type="number" id="experiencia" name="experiencia" required>
+            </div>
+            <div class="input-field">
+                <label for="empresa">Em qual empresa você trabalha atualmente?</label>
+                <input type="text" id="empresa" name="empresa">
+            </div>
+            <button type="submit">Prosseguir</button>
+        </form>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
