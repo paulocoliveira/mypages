@@ -1,0 +1,72 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.input-field, .btn {
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+}
+
+.input-field {
+    width: calc(100% - 30px);
+}
+
+.btn {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #ffffff;
+    width: 200px;
+}
+
+.generate-btn {
+    background-color: #1976D2;
+}
+
+.generate-btn:hover {
+    background-color: #115293;
+}
+
+.download-btn {
+    background-color: #4CAF50;
+}
+
+.download-btn:hover {
+    background-color: #357a38;
+}
+
+.hidden {
+    display: none;
+}
+
+.qrcode-placeholder {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    margin: 20px auto;
+    background-color: #eeeeee;
+}
+
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+}
