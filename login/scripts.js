@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if(userType === "adminUser") {
         messageElement.textContent = "Bem-vindo, administrador!";
+    } else if (userType === "superAdminUser"){
+        messageElement.textContent = "Bem-vindo, super admin!";
     } else {
         messageElement.textContent = "Bem-vindo, usuário!";
     }
