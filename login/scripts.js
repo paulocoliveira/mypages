@@ -1,6 +1,8 @@
-// Supondo que o tipo de usuário é determinado por alguma lógica aqui
 document.addEventListener("DOMContentLoaded", function() {
-    var userType = "regularUser"; // Ou "adminUser"
+    // Obtém o userType da URL
+    var params = new URLSearchParams(window.location.search);
+    var userType = params.get("userType"); // "adminUser" ou "regularUser"
+
     var messageElement = document.getElementById("message");
 
     if(userType === "adminUser") {
