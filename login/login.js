@@ -1,6 +1,7 @@
 document.getElementById("loginForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Impede o envio do formulário
     var username = document.getElementById("username").value;
+    var userType;
     
     if (username == "admin"){
         userType = "adminUser"
