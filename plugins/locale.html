@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulação de Locale</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <label>Informe o locale atual</label>
+            <input type="text" id="current_locale">
+
+            <label>Sete um novo locale e faça o get novamente</label>
+            <input type="text" id="new_locale">
+
+            <label>Formate 123456789 usando o locale setado</label>
+            <input type="text" id="formatted_number">
+
+            <button onclick="concluirLocale()">CONCLUIR</button>
+        </div>
+        <div class="output-container">
+            <textarea id="output" readonly></textarea>
+            <button onclick="limparOutput()">LIMPAR</button>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>

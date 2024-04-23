@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuário</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <input type="text" id="nome" placeholder="Nome" required>
+            <input type="text" id="sobrenome" placeholder="Sobrenome" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <button onclick="cadastrar()">Cadastrar</button>
+        </div>
+        <div class="output-container">
+            <textarea id="output" readonly></textarea>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>

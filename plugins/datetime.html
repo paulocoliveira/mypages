@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulação de Data e Hora</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <label>Qual a hora atual?</label>
+            <input type="text" id="current_time">
+
+            <label>Formate a data atual neste formato: %dd-%m-%yy</label>
+            <input type="text" id="formatted_date1">
+
+            <label>Formate a data atual neste formato: %YYYY-%mm-%dd %H:%M:%S</label>
+            <input type="text" id="formatted_date2">
+
+            <label>Que dia vai ser daqui 60 dias?</label>
+            <input type="text" id="date_in_60_days">
+
+            <label>Mude o ano para 2099</label>
+            <input type="text" id="year_2099">
+
+            <button onclick="concluir()">CONCLUIR</button>
+        </div>
+        <div class="output-container">
+            <textarea id="output" readonly></textarea>
+            <button onclick="limparOutput()">LIMPAR</button>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
