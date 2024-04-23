@@ -7,6 +7,8 @@ function cadastrar() {
         const output = document.getElementById('output');
         output.value += `${nome} ${sobrenome} foi registrado com sucesso\n`;
 
+        output.scrollTop = output.scrollHeight;
+
         // Limpa os campos
         document.getElementById('nome').value = '';
         document.getElementById('sobrenome').value = '';
@@ -61,5 +63,6 @@ function concluirLocale() {
 
 function addLanguage(language) {
     const output = document.getElementById('output');
+    output.scrollTop = output.scrollHeight;
     output.value += language + '\n';
 }
