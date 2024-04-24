@@ -1,0 +1,53 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.input-section, .output-section {
+    flex: 1;
+    margin: 0 10px;
+}
+
+input, textarea, button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    cursor: pointer;
+    background-color: #6200ea;
+    color: white;
+    border: none;
+}
+
+button:hover {
+    background-color: #3700b3;
+}
+
+textarea {
+    height: 150px;
+    resize: none;
+}
+
+#clearBtn {
+    width: auto;
+    padding: 5px 10px;
+    float: right;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
