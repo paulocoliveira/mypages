@@ -51,3 +51,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         frameDoc.getElementById('confirmation-message').textContent = `Pronto! Deu tudo certo, ${nickname}!`;
     });
 });
+
+document.getElementById('final-button').addEventListener('click', function() {
+    var name = document.getElementById('name-input').value;
+    document.getElementById('final-message').textContent = `A aula acabou!`;
+});
