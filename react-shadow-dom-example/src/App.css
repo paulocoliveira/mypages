@@ -1,0 +1,10 @@
+/* App.css */
+body{
+  margin: 20px;
+}
+
+.shadow-host {
+  border: 2px solid black;
+  padding: 20px;
+  width: 300px;
+}
