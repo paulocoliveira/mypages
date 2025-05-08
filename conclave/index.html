@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Own Conclave</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+        text-align: center;
+        padding: 20px;
+        background-color: #f0f0f0; /* mesma cor do body */
+        font-size: 24px;
+        font-weight: bold;
+        /* box-shadow removido */
+    }
+
+    .main {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    .column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .chimney {
+      position: relative;
+      width: 80px;
+      height: 220px;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .chimney-body {
+      width: 40px;
+      height: 150px;
+      background: #5c4033;
+    }
+
+    .chimney-top {
+      position: relative;
+      width: 60px;
+      height: 70px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .chimney-roof {
+      width: 0;
+      height: 0;
+      border-left: 35px solid transparent;
+      border-right: 35px solid transparent;
+      border-bottom: 20px solid #333;
+      margin-bottom: 0;
+    }
+
+    .chimney-grills {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .chimney-grills div {
+      width: 5px;
+      height: 50px;
+      background: #222;
+    }
+
+    .smoke {
+      position: absolute;
+      bottom: 143px; /* nova origem, base das hastes */
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    .smoke-up {
+      left: 50%;
+      transform: translateX(-50%);
+      animation: smokeUp 6s linear infinite;
+    }
+
+    .smoke-left {
+      left: 50%;
+      transform: translateX(-50%);
+      animation: smokeLeft 6s linear infinite;
+    }
+
+    .smoke-right {
+      left: 50%;
+      transform: translateX(-50%);
+      animation: smokeRight 6s linear infinite;
+    }
+
+    .smoke-far-left {
+        left: 50%;
+        transform: translateX(-50%);
+        animation: smokeFarLeft 6s linear infinite;
+    }
+
+    .smoke-far-right {
+        left: 50%;
+        transform: translateX(-50%);
+        animation: smokeFarRight 6s linear infinite;
+    }
+
+    .column.right {
+        align-items: stretch;
+    }
+
+    .participant-wrapper {
+        align-self: flex-start;
+    }
+
+    #nameList {
+        display: grid;
+        grid-template-columns: repeat(2, auto); /* 2 colunas, pode ser mais se quiser */
+        gap: 4px 16px;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    @keyframes smokeUp {
+      0% { transform: translateX(-50%) translateY(0) scale(0.8); opacity: 0.6; }
+      100% { transform: translateX(-30%) translateY(-200px) scale(1.5); opacity: 0; }
+    }
+
+    @keyframes smokeLeft {
+      0% { transform: translateX(-50%) translateY(0) rotate(-25deg) scale(0.8); opacity: 0.6; }
+      100% { transform: translateX(-30%) translateY(-200px) translateX(-30px) rotate(-25deg) scale(1.5); opacity: 0; }
+    }
+
+    @keyframes smokeRight {
+      0% { transform: translateX(-50%) translateY(0) rotate(25deg) scale(0.8); opacity: 0.6; }
+      100% { transform: translateX(-30%) translateY(-200px) translateX(30px) rotate(25deg) scale(1.5); opacity: 0; }
+    }
+
+    @keyframes smokeFarLeft {
+        0% {
+            transform: translateX(-50%) translateY(0) rotate(-50deg) scale(0.8);
+            opacity: 0.6;
+        }
+        100% {
+            transform: translateX(-30%) translateY(-200px) translateX(-60px) rotate(-50deg) scale(1.5);
+            opacity: 0;
+        }
+    }
+
+    @keyframes smokeFarRight {
+        0% {
+            transform: translateX(-50%) translateY(0) rotate(50deg) scale(0.8);
+            opacity: 0.6;
+        }
+        100% {
+            transform: translateX(-30%) translateY(-200px) translateX(60px) rotate(50deg) scale(1.5);
+            opacity: 0;
+        }
+    }
+
+
+    input[type="text"] {
+      width: 300px;
+      padding: 8px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      background-color: #1976d2;
+      color: white;
+      border-radius: 5px;
+    }
+
+    .name-entry {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        margin: 2px 0; /* menos espaçamento vertical */
+    }
+
+    .name-entry button {
+        background: none;       /* tira fundo azul */
+        border: none;
+        color: #666;            /* cinza discreto */
+        margin-left: 6px;       /* pequeno espaço entre nome e X */
+        cursor: pointer;
+        font-size: 14px;
+        padding: 0;
+    }
+
+    .color-box {
+        width: 14px;  /* menor */
+        height: 14px;
+        margin-right: 6px;
+    }
+
+    #winner {
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    #countdown {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <br>
+  <header>My Own Conclave</header>
+
+  <div class="main">
+    <div class="column left">
+      <div class="chimney" id="chimney">
+        <div class="chimney-body"></div>
+        <div class="chimney-top">
+          <div class="chimney-roof"></div>
+          <div class="chimney-grills">
+            <div></div><div></div><div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="column center">
+      <input type="text" id="nameInput" placeholder="Enter a name">
+      <div class="button-group">
+        <button onclick="addName()"><span class="material-icons">add</span></button>
+        <button onclick="startDraw()"><span class="material-icons">whatshot</span></button>
+        <button onclick="stopSmoke()"><span class="material-icons">smoke_free</span></button>
+        <button onclick="resetDraw()"><span class="material-icons">refresh</span></button>
+      </div>
+      <div id="countdown"></div>
+      <div id="winner"></div>
+    </div>
+
+    <div class="column right">
+        <div class="participant-wrapper">
+          <h2>Participants</h2>
+          <div id="nameList"></div>
+        </div>
+      </div>
+  </div>
+
+  <audio id="bells" src="https://cdn.pixabay.com/audio/2022/03/15/audio_8b07e97a79.mp3"></audio>
+
+  <script>
+    let nameColorMap = {};
+    let usedColors = new Set();
+    let smokeInterval;
+
+    const nameInput = document.getElementById('nameInput');
+
+    nameInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") addName();
+    });
+
+//    const fixedColors = ["AliceBlue","AntiqueWhite","Aqua","Aquamarine","Azure","Beige","Bisque","Black","BlanchedAlmond","Blue","BlueViolet","Brown","BurlyWood","CadetBlue","Chartreuse","Chocolate","Coral","CornflowerBlue","Cornsilk","Crimson","Cyan","DarkBlue","DarkCyan","DarkGoldenRod","DarkGray","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen","DarkOrange","DarkOrchid","DarkRed","DarkSalmon","DarkSeaGreen","DarkSlateBlue","DarkSlateGray","DarkTurquoise","DarkViolet","DeepPink","DeepSkyBlue","DimGray","DodgerBlue","FireBrick","FloralWhite","ForestGreen","Fuchsia","Gainsboro","GhostWhite","Gold","GoldenRod","Gray","Green","GreenYellow","HoneyDew","HotPink","IndianRed","Indigo","Ivory","Khaki","Lavender","LavenderBlush","LawnGreen","LemonChiffon","LightBlue","LightCoral","LightCyan","LightGoldenRodYellow","LightGray","LightGreen","LightPink","LightSalmon","LightSeaGreen","LightSkyBlue","LightSlateGray","LightSteelBlue","LightYellow","Lime","LimeGreen","Linen","Magenta","Maroon","MediumAquaMarine","MediumBlue","MediumOrchid","MediumPurple","MediumSeaGreen","MediumSlateBlue","MediumSpringGreen","MediumTurquoise","MediumVioletRed","MidnightBlue","MintCream","MistyRose","Moccasin","NavajoWhite","Navy","OldLace","Olive","OliveDrab","Orange","OrangeRed","Orchid","PaleGoldenRod","PaleGreen","PaleTurquoise","PaleVioletRed","PapayaWhip","PeachPuff","Peru","Pink","Plum","PowderBlue","Purple","RebeccaPurple","Red","RosyBrown","RoyalBlue","SaddleBrown","Salmon","SandyBrown","SeaGreen","SeaShell","Sienna","Silver","SkyBlue","SlateBlue","SlateGray","Snow","SpringGreen","SteelBlue","Tan","Teal","Thistle","Tomato","Turquoise","Violet","Wheat","White","WhiteSmoke","Yellow","YellowGreen"];
+    const fixedColors = ["Gold","MediumOrchid","Aquamarine","FireBrick","LawnGreen","DodgerBlue","Tomato","MediumTurquoise","Orchid","GoldenRod","DeepSkyBlue","Crimson","LightSeaGreen","Plum","DarkOrange","SkyBlue","IndianRed","Chartreuse","RoyalBlue","Salmon","Turquoise","HotPink","OliveDrab","SteelBlue","LightCoral","SpringGreen","MediumPurple","SaddleBrown","LightSkyBlue","DarkRed","MediumAquaMarine","SlateBlue","Coral","DarkGreen","AliceBlue","DarkMagenta","Yellow","CadetBlue","Pink","ForestGreen","CornflowerBlue","Moccasin","Indigo","Wheat","SeaGreen","Thistle","DarkSlateBlue","PeachPuff","Teal","LavenderBlush","OrangeRed","PaleTurquoise","RosyBrown","GreenYellow","MidnightBlue","PapayaWhip","RebeccaPurple","PaleGreen","SlateGray","LightGoldenRodYellow","DarkOliveGreen","Peru","Violet","Navy","LemonChiffon","DarkViolet","PaleVioletRed","Lime","BurlyWood","Cyan","SandyBrown","Lavender","DarkCyan","LightPink","Olive","LightBlue","DarkSalmon","Beige","Fuchsia","LightSteelBlue","Sienna","Azure","MediumVioletRed","Gainsboro","DarkKhaki","Magenta","PowderBlue","Maroon","LightYellow","Khaki","SeaShell","Green","Ivory","Chocolate","Gray","MintCream","BlanchedAlmond","Red","AntiqueWhite","BlueViolet","Silver","Cornsilk","WhiteSmoke","Black","White"];
+
+
+    function generateUniqueColor() {
+      for (const color of fixedColors) {
+        if (!usedColors.has(color)) {
+          usedColors.add(color);
+          return color;
+        }
+      }
+      return "#000";
+    }
+
+    function addName() {
+      const name = nameInput.value.trim();
+      if (!name || nameColorMap[name]) return;
+
+      const color = generateUniqueColor();
+      nameColorMap[name] = color;
+
+      const entry = document.createElement('div');
+      entry.className = 'name-entry';
+      entry.id = `entry-${name}`;
+
+      const colorBox = document.createElement('div');
+      colorBox.className = 'color-box';
+      colorBox.style.backgroundColor = color;
+
+      const nameText = document.createElement('span');
+      nameText.textContent = name;
+
+      const removeBtn = document.createElement('button');
+      removeBtn.innerHTML = '<span class="material-icons">close</span>';
+      removeBtn.onclick = () => removeName(name);
+
+      entry.appendChild(colorBox);
+      entry.appendChild(nameText);
+      entry.appendChild(removeBtn);
+
+      document.getElementById('nameList').appendChild(entry);
+      nameInput.value = '';
+    }
+
+    function removeName(name) {
+      usedColors.delete(nameColorMap[name]);
+      delete nameColorMap[name];
+      const entry = document.getElementById(`entry-${name}`);
+      if (entry) entry.remove();
+    }
+
+    function createSmoke(color) {
+      const chimney = document.getElementById('chimney');
+      ['smoke-up', 'smoke-left', 'smoke-right', 'smoke-far-left', 'smoke-far-right'].forEach(dir => {
+        const smoke = document.createElement('div');
+        smoke.className = `smoke ${dir}`;
+        smoke.style.backgroundColor = color;
+        chimney.appendChild(smoke);
+        setTimeout(() => smoke.remove(), 6000);
+      });
+    }
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+
+    function startDraw() {
+        const names = Object.keys(nameColorMap);
+        if (names.length === 0) {
+            alert('Please add at least one name!');
+            return;
+        }
+
+        document.getElementById('bells').play();
+        document.getElementById('winner').innerText = '';
+        document.getElementById('countdown').innerText = '';
+        clearInterval(smokeInterval);
+
+        let countdown = 3;
+        document.getElementById('countdown').innerText = `Drawing in ${countdown}...`;
+
+        const interval = setInterval(() => {
+            countdown--;
+            if (countdown === 0) {
+            clearInterval(interval);
+            document.getElementById('countdown').innerText = '';
+
+            const shuffled = shuffleArray([...names]);
+            const winner = shuffled[0]; // pega o primeiro após embaralhar
+            const color = nameColorMap[winner];
+
+            smokeInterval = setInterval(() => createSmoke(color), 500);
+
+            setTimeout(() => {
+                document.getElementById('winner').innerText = `The chosen one is: ${winner}`;
+            }, 2000);
+
+            } else {
+            document.getElementById('countdown').innerText = `Drawing in ${countdown}...`;
+            }
+        }, 1000);
+    }
+
+
+    function stopSmoke() {
+      clearInterval(smokeInterval);
+    }
+
+    function resetDraw() {
+      nameInput.value = '';
+      document.getElementById('winner').innerText = '';
+      document.getElementById('nameList').innerHTML = '';
+      document.getElementById('countdown').innerText = '';
+      nameColorMap = {};
+      usedColors = new Set();
+      clearInterval(smokeInterval);
+    }
+  </script>
+</body>
+</html>
