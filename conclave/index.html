@@ -16,12 +16,11 @@
     }
 
     header {
-        text-align: center;
-        padding: 20px;
-        background-color: #f0f0f0; /* mesma cor do body */
-        font-size: 24px;
-        font-weight: bold;
-        /* box-shadow removido */
+      text-align: center;
+      padding: 20px;
+      background-color: #f0f0f0;
+      font-size: 24px;
+      font-weight: bold;
     }
 
     .main {
@@ -92,7 +91,7 @@
 
     .smoke {
       position: absolute;
-      bottom: 143px; /* nova origem, base das hastes */
+      bottom: 143px;
       width: 20px;
       height: 20px;
       border-radius: 50%;
@@ -118,31 +117,31 @@
     }
 
     .smoke-far-left {
-        left: 50%;
-        transform: translateX(-50%);
-        animation: smokeFarLeft 6s linear infinite;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: smokeFarLeft 6s linear infinite;
     }
 
     .smoke-far-right {
-        left: 50%;
-        transform: translateX(-50%);
-        animation: smokeFarRight 6s linear infinite;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: smokeFarRight 6s linear infinite;
     }
 
     .column.right {
-        align-items: stretch;
+      align-items: stretch;
     }
 
     .participant-wrapper {
-        align-self: flex-start;
+      align-self: flex-start;
     }
 
     #nameList {
-        display: grid;
-        grid-template-columns: repeat(2, auto); /* 2 colunas, pode ser mais se quiser */
-        gap: 4px 16px;
-        max-height: 400px;
-        overflow-y: auto;
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      gap: 4px 16px;
+      max-height: 400px;
+      overflow-y: auto;
     }
 
     @keyframes smokeUp {
@@ -161,27 +160,14 @@
     }
 
     @keyframes smokeFarLeft {
-        0% {
-            transform: translateX(-50%) translateY(0) rotate(-50deg) scale(0.8);
-            opacity: 0.6;
-        }
-        100% {
-            transform: translateX(-30%) translateY(-200px) translateX(-60px) rotate(-50deg) scale(1.5);
-            opacity: 0;
-        }
+      0% { transform: translateX(-50%) translateY(0) rotate(-50deg) scale(0.8); opacity: 0.6; }
+      100% { transform: translateX(-30%) translateY(-200px) translateX(-60px) rotate(-50deg) scale(1.5); opacity: 0; }
     }
 
     @keyframes smokeFarRight {
-        0% {
-            transform: translateX(-50%) translateY(0) rotate(50deg) scale(0.8);
-            opacity: 0.6;
-        }
-        100% {
-            transform: translateX(-30%) translateY(-200px) translateX(60px) rotate(50deg) scale(1.5);
-            opacity: 0;
-        }
+      0% { transform: translateX(-50%) translateY(0) rotate(50deg) scale(0.8); opacity: 0.6; }
+      100% { transform: translateX(-30%) translateY(-200px) translateX(60px) rotate(50deg) scale(1.5); opacity: 0; }
     }
-
 
     input[type="text"] {
       width: 300px;
@@ -194,6 +180,8 @@
       display: flex;
       gap: 10px;
       margin-bottom: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     button {
@@ -207,26 +195,26 @@
     }
 
     .name-entry {
-        display: flex;
-        align-items: center;
-        font-size: 14px;
-        margin: 2px 0; /* menos espaçamento vertical */
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      margin: 2px 0;
     }
 
     .name-entry button {
-        background: none;       /* tira fundo azul */
-        border: none;
-        color: #666;            /* cinza discreto */
-        margin-left: 6px;       /* pequeno espaço entre nome e X */
-        cursor: pointer;
-        font-size: 14px;
-        padding: 0;
+      background: none;
+      border: none;
+      color: #666;
+      margin-left: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 0;
     }
 
     .color-box {
-        width: 14px;  /* menor */
-        height: 14px;
-        margin-right: 6px;
+      width: 14px;
+      height: 14px;
+      margin-right: 6px;
     }
 
     #winner {
@@ -238,6 +226,37 @@
     #countdown {
       font-size: 20px;
       margin-top: 10px;
+    }
+
+    /* MODAL */
+    #bookModal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    #bookModal .modal-content {
+      background: white;
+      padding: 20px;
+      max-width: 400px;
+      margin: 100px auto;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      resize: none;
+      font-size: 14px;
+      padding: 10px;
     }
   </style>
 </head>
@@ -251,9 +270,7 @@
         <div class="chimney-body"></div>
         <div class="chimney-top">
           <div class="chimney-roof"></div>
-          <div class="chimney-grills">
-            <div></div><div></div><div></div>
-          </div>
+          <div class="chimney-grills"><div></div><div></div><div></div></div>
         </div>
       </div>
     </div>
@@ -265,78 +282,97 @@
         <button onclick="startDraw()"><span class="material-icons">whatshot</span></button>
         <button onclick="stopSmoke()"><span class="material-icons">smoke_free</span></button>
         <button onclick="resetDraw()"><span class="material-icons">refresh</span></button>
+        <button onclick="openBookModal()"><span class="material-icons">menu_book</span></button>
       </div>
       <div id="countdown"></div>
       <div id="winner"></div>
     </div>
 
     <div class="column right">
-        <div class="participant-wrapper">
-          <h2>Participants</h2>
-          <div id="nameList"></div>
-        </div>
+      <div class="participant-wrapper">
+        <h2>Participants</h2>
+        <div id="nameList"></div>
       </div>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div id="bookModal">
+    <div class="modal-content">
+      <h3>Paste names (one per line)</h3>
+      <textarea id="bookTextarea" placeholder="e.g. Amanda&#10;Breno&#10;Débora"></textarea>
+      <button onclick="addBookNames()">Add to Draw</button>
+      <button onclick="closeBookModal()">Close</button>
+    </div>
   </div>
 
   <audio id="bells" src="https://cdn.pixabay.com/audio/2022/03/15/audio_8b07e97a79.mp3"></audio>
 
   <script>
     let nameColorMap = {};
-    let usedColors = new Set();
     let smokeInterval;
-
     const nameInput = document.getElementById('nameInput');
 
-    nameInput.addEventListener("keydown", (e) => {
+    nameInput.addEventListener("keydown", e => {
       if (e.key === "Enter") addName();
     });
 
-//    const fixedColors = ["AliceBlue","AntiqueWhite","Aqua","Aquamarine","Azure","Beige","Bisque","Black","BlanchedAlmond","Blue","BlueViolet","Brown","BurlyWood","CadetBlue","Chartreuse","Chocolate","Coral","CornflowerBlue","Cornsilk","Crimson","Cyan","DarkBlue","DarkCyan","DarkGoldenRod","DarkGray","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen","DarkOrange","DarkOrchid","DarkRed","DarkSalmon","DarkSeaGreen","DarkSlateBlue","DarkSlateGray","DarkTurquoise","DarkViolet","DeepPink","DeepSkyBlue","DimGray","DodgerBlue","FireBrick","FloralWhite","ForestGreen","Fuchsia","Gainsboro","GhostWhite","Gold","GoldenRod","Gray","Green","GreenYellow","HoneyDew","HotPink","IndianRed","Indigo","Ivory","Khaki","Lavender","LavenderBlush","LawnGreen","LemonChiffon","LightBlue","LightCoral","LightCyan","LightGoldenRodYellow","LightGray","LightGreen","LightPink","LightSalmon","LightSeaGreen","LightSkyBlue","LightSlateGray","LightSteelBlue","LightYellow","Lime","LimeGreen","Linen","Magenta","Maroon","MediumAquaMarine","MediumBlue","MediumOrchid","MediumPurple","MediumSeaGreen","MediumSlateBlue","MediumSpringGreen","MediumTurquoise","MediumVioletRed","MidnightBlue","MintCream","MistyRose","Moccasin","NavajoWhite","Navy","OldLace","Olive","OliveDrab","Orange","OrangeRed","Orchid","PaleGoldenRod","PaleGreen","PaleTurquoise","PaleVioletRed","PapayaWhip","PeachPuff","Peru","Pink","Plum","PowderBlue","Purple","RebeccaPurple","Red","RosyBrown","RoyalBlue","SaddleBrown","Salmon","SandyBrown","SeaGreen","SeaShell","Sienna","Silver","SkyBlue","SlateBlue","SlateGray","Snow","SpringGreen","SteelBlue","Tan","Teal","Thistle","Tomato","Turquoise","Violet","Wheat","White","WhiteSmoke","Yellow","YellowGreen"];
-    const fixedColors = ["Gold","MediumOrchid","Aquamarine","FireBrick","LawnGreen","DodgerBlue","Tomato","MediumTurquoise","Orchid","GoldenRod","DeepSkyBlue","Crimson","LightSeaGreen","Plum","DarkOrange","SkyBlue","IndianRed","Chartreuse","RoyalBlue","Salmon","Turquoise","HotPink","OliveDrab","SteelBlue","LightCoral","SpringGreen","MediumPurple","SaddleBrown","LightSkyBlue","DarkRed","MediumAquaMarine","SlateBlue","Coral","DarkGreen","AliceBlue","DarkMagenta","Yellow","CadetBlue","Pink","ForestGreen","CornflowerBlue","Moccasin","Indigo","Wheat","SeaGreen","Thistle","DarkSlateBlue","PeachPuff","Teal","LavenderBlush","OrangeRed","PaleTurquoise","RosyBrown","GreenYellow","MidnightBlue","PapayaWhip","RebeccaPurple","PaleGreen","SlateGray","LightGoldenRodYellow","DarkOliveGreen","Peru","Violet","Navy","LemonChiffon","DarkViolet","PaleVioletRed","Lime","BurlyWood","Cyan","SandyBrown","Lavender","DarkCyan","LightPink","Olive","LightBlue","DarkSalmon","Beige","Fuchsia","LightSteelBlue","Sienna","Azure","MediumVioletRed","Gainsboro","DarkKhaki","Magenta","PowderBlue","Maroon","LightYellow","Khaki","SeaShell","Green","Ivory","Chocolate","Gray","MintCream","BlanchedAlmond","Red","AntiqueWhite","BlueViolet","Silver","Cornsilk","WhiteSmoke","Black","White"];
-
-
-    function generateUniqueColor() {
-      for (const color of fixedColors) {
-        if (!usedColors.has(color)) {
-          usedColors.add(color);
-          return color;
-        }
+    function generateColorPalette(count = 100) {
+      const step = 137;
+      const palette = [];
+      for (let i = 0; i < count; i++) {
+        const hue = (i * step) % 360;
+        palette.push(`hsl(${hue}, 70%, 60%)`);
       }
-      return "#000";
+      return shuffleArray(palette);
     }
 
-    function addName() {
-      const name = nameInput.value.trim();
-      if (!name || nameColorMap[name]) return;
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    const colorPool = generateColorPalette();
+    let colorIndex = 0;
+
+    function generateUniqueColor() {
+      return colorIndex < colorPool.length ? colorPool[colorIndex++] : "#000";
+    }
+
+    function addName(name = null) {
+      const inputName = name || nameInput.value.trim();
+      if (!inputName || nameColorMap[inputName]) return;
 
       const color = generateUniqueColor();
-      nameColorMap[name] = color;
+      nameColorMap[inputName] = color;
 
       const entry = document.createElement('div');
       entry.className = 'name-entry';
-      entry.id = `entry-${name}`;
+      entry.id = `entry-${inputName}`;
 
       const colorBox = document.createElement('div');
       colorBox.className = 'color-box';
       colorBox.style.backgroundColor = color;
 
       const nameText = document.createElement('span');
-      nameText.textContent = name;
+      nameText.textContent = inputName;
 
       const removeBtn = document.createElement('button');
       removeBtn.innerHTML = '<span class="material-icons">close</span>';
-      removeBtn.onclick = () => removeName(name);
+      removeBtn.onclick = () => removeName(inputName);
 
       entry.appendChild(colorBox);
       entry.appendChild(nameText);
       entry.appendChild(removeBtn);
 
       document.getElementById('nameList').appendChild(entry);
-      nameInput.value = '';
+      if (!name) nameInput.value = '';
     }
 
     function removeName(name) {
-      usedColors.delete(nameColorMap[name]);
       delete nameColorMap[name];
       const entry = document.getElementById(`entry-${name}`);
       if (entry) entry.remove();
@@ -353,52 +389,33 @@
       });
     }
 
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-    }
-
-
     function startDraw() {
-        const names = Object.keys(nameColorMap);
-        if (names.length === 0) {
-            alert('Please add at least one name!');
-            return;
+      const names = Object.keys(nameColorMap);
+      if (names.length === 0) return alert('Please add at least one name!');
+      document.getElementById('bells').play();
+      document.getElementById('winner').innerText = '';
+      document.getElementById('countdown').innerText = '';
+      clearInterval(smokeInterval);
+
+      let countdown = 3;
+      document.getElementById('countdown').innerText = `Drawing in ${countdown}...`;
+      const interval = setInterval(() => {
+        countdown--;
+        if (countdown === 0) {
+          clearInterval(interval);
+          document.getElementById('countdown').innerText = '';
+          const shuffled = shuffleArray([...names]);
+          const winner = shuffled[0];
+          const color = nameColorMap[winner];
+          smokeInterval = setInterval(() => createSmoke(color), 500);
+          setTimeout(() => {
+            document.getElementById('winner').innerText = `The chosen one is: ${winner}`;
+          }, 2000);
+        } else {
+          document.getElementById('countdown').innerText = `Drawing in ${countdown}...`;
         }
-
-        document.getElementById('bells').play();
-        document.getElementById('winner').innerText = '';
-        document.getElementById('countdown').innerText = '';
-        clearInterval(smokeInterval);
-
-        let countdown = 3;
-        document.getElementById('countdown').innerText = `Drawing in ${countdown}...`;
-
-        const interval = setInterval(() => {
-            countdown--;
-            if (countdown === 0) {
-            clearInterval(interval);
-            document.getElementById('countdown').innerText = '';
-
-            const shuffled = shuffleArray([...names]);
-            const winner = shuffled[0]; // pega o primeiro após embaralhar
-            const color = nameColorMap[winner];
-
-            smokeInterval = setInterval(() => createSmoke(color), 500);
-
-            setTimeout(() => {
-                document.getElementById('winner').innerText = `The chosen one is: ${winner}`;
-            }, 2000);
-
-            } else {
-            document.getElementById('countdown').innerText = `Drawing in ${countdown}...`;
-            }
-        }, 1000);
+      }, 1000);
     }
-
 
     function stopSmoke() {
       clearInterval(smokeInterval);
@@ -410,8 +427,25 @@
       document.getElementById('nameList').innerHTML = '';
       document.getElementById('countdown').innerText = '';
       nameColorMap = {};
-      usedColors = new Set();
+      colorIndex = 0;
       clearInterval(smokeInterval);
+    }
+
+    // BOOK MODAL
+    function openBookModal() {
+      document.getElementById('bookModal').style.display = 'block';
+    }
+
+    function closeBookModal() {
+      document.getElementById('bookModal').style.display = 'none';
+      document.getElementById('bookTextarea').value = '';
+    }
+
+    function addBookNames() {
+      const textarea = document.getElementById('bookTextarea');
+      const names = textarea.value.split('\n').map(n => n.trim()).filter(n => n && !nameColorMap[n]);
+      names.forEach(n => addName(n));
+      closeBookModal();
     }
   </script>
 </body>
