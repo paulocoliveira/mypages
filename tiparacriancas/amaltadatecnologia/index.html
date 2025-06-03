@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Malta da Tecnologia</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f0f8ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    #buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      text-align: center;
+    }
+    .icon {
+        width: 40px;
+        height: 40px;
+        background-color: currentColor;
+        mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill=\"black\" d=\"M256 0a128 128 0 1 0 0 256a128 128 0 1 0 0-256zm0 288c-88.4 0-256 44.8-256 128v64h512v-64c0-83.2-167.6-128-256-128z\"/></svg>');
+        -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill=\"black\" d=\"M256 0a128 128 0 1 0 0 256a128 128 0 1 0 0-256zm0 288c-88.4 0-256 44.8-256 128v64h512v-64c0-83.2-167.6-128-256-128z\"/></svg>');
+        mask-repeat: no-repeat;
+        -webkit-mask-repeat: no-repeat;
+        mask-position: center;
+        -webkit-mask-position: center;
+        mask-size: contain;
+        -webkit-mask-size: contain;
+        }
+    .dono .icon { color: #2196f3; }
+    .designer .icon { color: #9c27b0; }
+    .programador .icon { color: #ff9800; }
+    .testador .icon { color: #f44336; }
+    .coordenador .icon { color: #4caf50; }
+
+    .button-container button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      transition: background-color 0.3s;
+    }
+    .dono button { background-color: #2196f3; }
+    .designer button { background-color: #9c27b0; }
+    .programador button { background-color: #ff9800; }
+    .testador button { background-color: #f44336; }
+    .coordenador button { background-color: #4caf50; }
+
+    .button-container button:hover {
+      opacity: 0.85;
+    }
+    #gifDisplay {
+      width: 300px;
+      height: 300px;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px dashed #ccc;
+      border-radius: 16px;
+    }
+    #gifDisplay img {
+      max-width: 100%;
+      max-height: 100%;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .label {
+      font-size: 12px;
+      margin-top: 4px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>A Malta da Tecnologia</h1>
+  <div id="buttons">
+    <div class="button-container dono">
+      <div class="icon"></div>
+      <button onclick="showGif('pensador')">Dono do Produto</button>
+      <div class="label">Tem as ideias</div>
+    </div>
+    <div class="button-container designer">
+      <div class="icon"></div>
+      <button onclick="showGif('designer')">Designer</button>
+      <div class="label">Faz os desenhos</div>
+    </div>
+    <div class="button-container programador">
+      <div class="icon"></div>
+      <button onclick="showGif('programador')">Programador</button>
+      <div class="label">Escreve o código</div>
+    </div>
+    <div class="button-container testador">
+      <div class="icon"></div>
+      <button onclick="showGif('testador')">Testador</button>
+      <div class="label">Verifica se está certo</div>
+    </div>
+    <div class="button-container coordenador">
+      <div class="icon"></div>
+      <button onclick="showGif('coordenador')">Líder</button>
+      <div class="label">Ajuda a equipa</div>
+    </div>
+  </div>
+
+  <div id="gifDisplay">
+    <p>Escolhe uma função para ver!</p>
+  </div>
+
+  <script>
+    const gifs = {
+      pensador: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjZ4NmJvZWs2YzlxbXIyb2FpYnRweXhubGRyNDR4cm5zcmh2Mnd4YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8acGIeFnqLA7S/giphy.gif",
+      designer: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmNia2ljdHdjbXBwbzIwODBjcXRyNWxwMTUzbTE5OTNxZGZiMno1NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oz8xTUmZABI3PGwDe/giphy.gif",
+      programador: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWtndTV5ZHRvMXZweGxwc3E0NnRxN3F4ZXFvamxxdGkwemRlanl5YyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/78XCFBGOlS6keY1Bil/giphy.gif",
+      testador: "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2prMDRzZjdtdTAwNXgyeXNhOTk5dTJkeHBpdmd5cXA2Z25qOXJqbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7MZ0v9KynmiSA/giphy.gif",
+      coordenador: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3Nscm4xemhweTVuenVleWw1a25iY3pnNzNsc2p5dGxhZ3R4c3Q3bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/65HR2UL6nn6XMSUoRA/giphy.gif"
+    };
+
+    function showGif(role) {
+      const gifDisplay = document.getElementById("gifDisplay");
+      gifDisplay.innerHTML = `<img src="${gifs[role]}" alt="${role}" />`;
+    }
+  </script>
+</body>
+</html>

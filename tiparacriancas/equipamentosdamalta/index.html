@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Equipamentos da Malta</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f0f8ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #gifDisplay {
+      width: 300px;
+      height: 300px;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px dashed #ccc;
+      border-radius: 16px;
+      margin: 20px 0;
+    }
+    #gifDisplay img {
+      max-width: 100%;
+      max-height: 100%;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    #buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      max-width: 600px;
+    }
+    button {
+      padding: 10px 16px;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      transition: background-color 0.3s;
+    }
+    .btn1 { background-color: #008b8b; } /* verde-azulado escuro */
+    .btn2 { background-color: #b22222; } /* vermelho escuro */
+    .btn3 { background-color: #08bfc5; } /* azul ardósia */
+    .btn4 { background-color: #ff8c00; } /* laranja escuro */
+    .btn5 { background-color: #9932cc; } /* roxo médio */
+    .btn6 { background-color: #3e8e41; } /* verde escuro */
+    .btn7 { background-color: #e9447b; } /* vermelho cereja */
+    .btn8 { background-color: #ec9a5f; } /* castanho */
+    .btn9 { background-color: #430bd0; } /* castanho */
+  </style>
+</head>
+<body>
+  <h1>Equipamentos da Malta</h1>
+  <div id="container">
+    <div id="gifDisplay">
+      <p>Escolhe um equipamento para ver!</p>
+    </div>
+    <div id="buttons">
+      <button class="btn1" onclick="showGif('computador')">Portátil</button>
+      <button class="btn2" onclick="showGif('tablet')">Tablet</button>
+      <button class="btn3" onclick="showGif('teclado')">Teclado</button>
+      <button class="btn4" onclick="showGif('rato')">Rato</button>
+      <button class="btn5" onclick="showGif('microfone')">Microfone</button>
+      <button class="btn6" onclick="showGif('monitor')">Ecrã</button>
+      <button class="btn7" onclick="showGif('auscultadores')">Auscultadores com Microfone</button>
+      <button class="btn8" onclick="showGif('impressora')">Impressora</button>
+      <button class="btn9" onclick="showGif('camara')">Câmara</button>
+    </div>
+  </div>
+
+  <script>
+    const gifs = {
+      computador: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWFzcWZwa2Y4dmk5cncyemoyOWpzbnh0N2xjNmxxYXF2MjN6ZjBnaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/JIX9t2j0ZTN9S/giphy.gif",
+      tablet: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3ZhMmtkOGE1b2k3cGNyMW15Njh6cjd3ZGlmZ29zbDk1MTU4c3F3eiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/fOYqmZhNF2cGmWIiTK/giphy.gif",
+      teclado: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzBrOXBvam0xNW1mdDhlc2JmZzQ4b29rYnpuc2t2MDh6ejExdjhtMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/LHZyixOnHwDDy/giphy.gif",
+      rato: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTdmbDJnem53ZXVxbTE2cnNmZmg3MXh4YTZqczc3cjM0cW5odGl5NyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xUPGcMc8R0zrqe6oko/giphy.gif",
+      microfone: "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjl0dmNuaDRza3MwYW12dWVyZjFwdTFhbXFta2lzenZ4Mmt4bm91NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ehIUgLPyG7OYiUCsNr/giphy.gif",
+      monitor: "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmZ1ejNlZ2lnNnZqaDRpNHhlb29wdmp0NG13a2Y1dGJtcGRjZjl3ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ECgSx97zIAaR62CLz3/giphy.gif",
+      auscultadores: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeG93ajV0ZzRxaXAwZXlhemZpaGJoNHZjNWVvbTM4ZmV4M2lzbmJmMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0ErB0lTmIDdChcAw/giphy.gif",
+      impressora: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3VybnAyaDVwOGFqaTl6cmZ1MGxkcW1wZDFpNnltdXUxeHdoYXJsYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bjPdrcBcywyqT127HD/giphy.gif",
+      camara: "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3kzaHR4ZGgxa2oxNnoxYzl4MnV6MmRuMzl2cDBmY3RhbGV0YXJqbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MBW4vJ18aBAXvAc1um/giphy.gif"
+    };
+
+    function showGif(role) {
+      const gifDisplay = document.getElementById("gifDisplay");
+      gifDisplay.innerHTML = gifs[role] !== "#"
+        ? `<img src="${gifs[role]}" alt="${role}" />`
+        : `<p>[GIF por escolher]</p>`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O Mundo da Tecnologia</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to right, #f0f8ff, #e6f7ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: #007acc;
+      animation: pulse 2s infinite;
+    }
+
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .menu button {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: none;
+      font-size: 1rem;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .menu button:hover {
+      transform: scale(1.05);
+    }
+
+    .menu button:active {
+      transform: scale(0.9);
+    }
+
+    /* Cores únicas */
+    .bt1 { background-color: #ea1a07; }
+    .bt2 { background-color: #f2a706; }
+    .bt3 { background-color: #0ce20c; }
+    .bt4 { background-color: #3c0bb9; }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <h1>O Mundo da Tecnologia</h1>
+  <br><br><br>
+  <div class="menu">
+    <button class="bt1" onclick="playSoundAndRedirect('formassaltitantes')">Jogar Formas Saltitantes</button>
+    <button class="bt2" onclick="playSoundAndRedirect('amaltadatecnologia')">Conheça a Malta da Tecnologia</button>
+    <button class="bt3" onclick="playSoundAndRedirect('criacoesdamalta')">Veja as Criações da Malta da Tecnologia</button>
+    <button class="bt4" onclick="playSoundAndRedirect('equipamentosdamalta')">Explore os Equipamentos da Malta da Tecnologia</button>
+  </div>
+
+  <audio id="click-sound" src="click.mp3"></audio>
+
+  <script>
+    function playSoundAndRedirect(folder) {
+      const audio = document.getElementById('click-sound');
+      audio.currentTime = 0;
+      audio.play();
+      setTimeout(() => {
+        window.location.href = `${folder}/index.html`;
+      }, 300); // aguarda o som começar
+    }
+  </script>
+</body>
+</html>

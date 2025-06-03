@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jogo da Forma Geométrica Saltitante</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #f0f8ff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: sans-serif;
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    #gameArea {
+      width: 400px;
+      height: 300px;
+      background-color: #e0e0e0;
+      position: relative;
+      overflow: hidden;
+      border: 4px solid #333;
+      margin-bottom: 20px;
+    }
+    #player {
+      width: 50px;
+      height: 50px;
+      background-color: #ff4500;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: all 0.3s ease;
+    }
+    #controls {
+      display: flex;
+      gap: 10px;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Jogo da Forma Geométrica Saltitante</h1>
+  <div id="gameArea">
+    <div id="player"></div>
+  </div>
+
+  <div id="controls">
+    <button onclick="setShape('square')">Quadrado</button>
+    <button onclick="setShape('circle')">Círculo</button>
+    <button onclick="setShape('triangle')">Triângulo</button>
+  </div>
+
+  <audio id="jumpSound" src="jump.mp3"></audio>
+  <audio id="boingSound" src="boing.mp3"></audio>
+  <audio id="clapsSound" src="claps.mp3"></audio>
+
+  <script>
+    const player = document.getElementById("player");
+    const jumpSound = document.getElementById("jumpSound");
+    const boingSound = document.getElementById("boingSound");
+    const clapsSound = document.getElementById("clapsSound");
+    const gameArea = document.getElementById("gameArea");
+    let isJumping = false;
+
+    document.addEventListener("keydown", (e) => {
+      if (e.code === "Space" && !isJumping) {
+        isJumping = true;
+        jump();
+        jumpSound.currentTime = 0;
+        jumpSound.play();
+      }
+    });
+
+    function jump() {
+      let position = 0;
+      const jumpHeight = 50; // ajuste para altura próxima do topo
+      const speed = 4;
+      const maxReach = gameArea.clientHeight - player.clientHeight;
+
+      const upInterval = setInterval(() => {
+        if (position >= jumpHeight) {
+          clearInterval(upInterval);
+
+          if (jumpHeight >= 300) {
+            clapsSound.currentTime = 0;
+            clapsSound.play();
+          }
+
+
+          const downInterval = setInterval(() => {
+            if (position <= 0) {
+              clearInterval(downInterval);
+              isJumping = false;
+            } else {
+              position -= speed;
+              player.style.bottom = position + "px";
+            }
+          }, 20);
+        } else {
+          position += speed;
+          player.style.bottom = position + "px";
+        }
+      }, 20);
+    }
+
+    function setShape(shape) {
+        // Toca boing apenas ao clicar, e tira o foco do botão
+        document.activeElement.blur();
+        boingSound.currentTime = 0;
+        boingSound.play();
+
+        // Define as formas
+        if (shape === 'square') {
+            player.style.borderRadius = '0';
+            player.style.borderLeft = 'none';
+            player.style.borderRight = 'none';
+            player.style.borderBottom = 'none';
+            player.style.width = '50px';
+            player.style.height = '50px';
+            player.style.backgroundColor = '#ff4500';
+        } else if (shape === 'circle') {
+            player.style.borderRadius = '50%';
+            player.style.borderLeft = 'none';
+            player.style.borderRight = 'none';
+            player.style.borderBottom = 'none';
+            player.style.width = '50px';
+            player.style.height = '50px';
+            player.style.backgroundColor = '#2196f3';
+        } else if (shape === 'triangle') {
+            player.style.borderRadius = '0';
+            player.style.width = '0';
+            player.style.height = '0';
+            player.style.backgroundColor = 'transparent';
+            player.style.borderLeft = '25px solid transparent';
+            player.style.borderRight = '25px solid transparent';
+            player.style.borderBottom = '50px solid #4caf50';
+        }
+    }
+  </script>
+</body>
+</html>
